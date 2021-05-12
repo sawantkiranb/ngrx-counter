@@ -1,0 +1,35 @@
+<div class="row">
+  <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+    <div class="col-md-12">
+      <div class="mb-3">
+        <label for="Title" class="form-label">Title</label>
+        <input type="text" class="form-control" id="Title" placeholder="Enter title" formControlName="title">
+
+        <small [hidden]="form.title.valid || form.title.untouched" class="text-danger" translate>
+          <div *ngIf="form.title.errors?.required" translate>Title is required</div>
+          <div *ngIf="form.title.errors?.maxlength">
+            <span translate>Title should contain max</span>
+            {{ form.title.errors?.maxlength.requiredLength }}
+            <span translate>characters</span>
+          </div>
+        </small>
+      </div>
+      <div class="mb-3">
+        <label for="Description" class="form-label">Description</label>
+        <textarea type="text" class="form-control" id="Description" placeholder="Enter description" formControlName="description"></textarea>
+
+        <small [hidden]="form.description.valid || form.description.untouched" class="text-danger" translate>
+          <div *ngIf="form.description.errors?.required" translate>Description is required</div>
+          <div *ngIf="form.description.errors?.maxlength">
+            <span translate>Description should contain max</span>
+            {{ form.description.errors?.maxlength.requiredLength }}
+            <span translate>characters</span>
+          </div>
+        </small>
+      </div>
+      <div class="mb-3">
+        <button type="submit" class="btn btn-primary" [disabled]="postForm.invalid">Add</button>
+      </div>
+    </div>
+  </form>
+</div>
